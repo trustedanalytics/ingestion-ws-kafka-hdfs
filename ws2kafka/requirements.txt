@@ -1,0 +1,4 @@
+websockets==2.4
+kafka-python==0.9.3
+retry==0.9.0
+

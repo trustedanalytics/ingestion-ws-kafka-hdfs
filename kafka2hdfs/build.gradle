@@ -1,0 +1,52 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:1.2.3.RELEASE"
+    }
+}
+
+apply plugin: 'idea'
+apply plugin: 'java'
+apply plugin: 'spring-boot'
+
+idea {
+    module {
+        downloadSources = true
+    }
+}
+
+repositories {
+    mavenLocal()
+    jcenter()
+    mavenCentral()
+    maven {
+        url "http://nexus.sclab.intel.com:8080/content/groups/public"
+    }
+}
+
+configurations {
+    all*.exclude group: '', module: 'servlet-api'
+    all*.exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
+    all*.exclude group: 'org.slf4j', module: 'slf4j-log4j12'
+}
+
+dependencies {
+    compile "org.springframework.boot:spring-boot-starter-web"
+
+    compile "org.trustedanalytics:hadoop-spring-utils:0.4.0"
+    compile "org.apache.kafka:kafka_2.9.2:0.8.2.1"
+
+    testCompile "junit:junit:4.11"
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.4'
+}
+
+springBoot {
+    mainClass = "org.trustedanalytics.ingestion.kafka2hdfs.Main"
+}
+
+bootRun.systemProperties = System.properties

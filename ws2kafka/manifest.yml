@@ -1,0 +1,9 @@
+---
+applications:
+    - name: ws2kafka
+      command: python -m ws_server
+      memory: 256M
+      buildpack: python_buildpack
+      services:
+          - kafka-inst
+

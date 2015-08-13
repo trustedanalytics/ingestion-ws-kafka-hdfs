@@ -1,0 +1,17 @@
+*~
+*.bak
+
+*.pyc
+*.pyo
+
+.gradle/
+build/
+
+.idea/
+*.iml
+
+.env/
+
+*.swp
+
+
