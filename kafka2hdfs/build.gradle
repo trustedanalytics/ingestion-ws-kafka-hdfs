@@ -3,13 +3,32 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath "org.springframework.boot:spring-boot-gradle-plugin:1.2.3.RELEASE"
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:1.2.5.RELEASE"
     }
 }
 
 apply plugin: 'idea'
 apply plugin: 'java'
 apply plugin: 'spring-boot'
+apply plugin: 'jacoco' // for tests code coverage
+
+def coverageFilePath = "${gradle.gradleUserHomeDir}/coverage.gradle"
+if (file("${coverageFilePath}").exists()) {
+    apply from: "${coverageFilePath}"
+} else {
+    logger.quiet("No such file: ${coverageFilePath}")
+    logger.quiet("JaCoCo will not measure the code coverage!")
+}
+ext {
+    requirements = [
+        'INSTRUCTION'   : 0,
+        'BRANCH'        : 0,
+        'LINE'          : 0,
+        'COMPLEXITY'    : 0,
+        'METHOD'        : 0,
+        'CLASS'         : 0
+    ]
+}
 
 idea {
     module {
@@ -35,14 +54,14 @@ configurations {
 dependencies {
     compile "org.springframework.boot:spring-boot-starter-web"
 
-    compile "org.trustedanalytics:hadoop-spring-utils:0.4.1"
+    compile "org.trustedanalytics:hadoop-spring-utils:0.4.2-SNAPSHOT"
     compile "org.apache.kafka:kafka_2.9.2:0.8.2.1"
 
     testCompile "junit:junit:4.11"
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.4'
+    gradleVersion = '2.6'
 }
 
 springBoot {
