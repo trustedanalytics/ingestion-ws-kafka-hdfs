@@ -26,5 +26,5 @@ cf cs kafka shared kafka-inst
 cf cs zookeeper shared zookeeper-inst
 
 # we need hdfs to store files
-cf cs hdfs free hdfs-inst
+cf cs hdfs shared hdfs-inst
 
