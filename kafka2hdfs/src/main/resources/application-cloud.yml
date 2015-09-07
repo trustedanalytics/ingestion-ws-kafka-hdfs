@@ -1,6 +1,5 @@
-zookeeper: "${vcap.services.zookeeper-inst.credentials.uri}/kafka"
+zookeeper: "${vcap.services.zookeeper-inst.credentials.zk.cluster}/kafka"
 
 hdfs:
-    user: ${vcap.services.hdfs-inst.credentials.user}
-    uri: ${vcap.services.hdfs-inst.credentials.uri}
+    user: cf
 

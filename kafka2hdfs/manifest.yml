@@ -6,6 +6,7 @@ applications:
   services:
       - zookeeper-inst
       - hdfs-inst
+      - kafka-inst
   env:
       TOPICS: someTopic1,someTopic2
       CONSUMER_GROUP: kafka2hdfs_example

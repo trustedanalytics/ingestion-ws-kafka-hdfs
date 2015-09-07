@@ -19,14 +19,14 @@ import org.trustedanalytics.ingestion.kafka2hdfs.core.ConsumingTask;
 import org.trustedanalytics.ingestion.kafka2hdfs.threading.TaskRunner;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.trustedanalytics.utils.hdfs.EnableHdfs;
 
 import javax.annotation.Resource;
 import java.util.List;
 
 @Configuration
-@ComponentScan("org.trustedanalytics.utils.hdfs")
+@EnableHdfs
 public class IngestionConfiguraiton {
 
     @Resource(name = "tasks")
