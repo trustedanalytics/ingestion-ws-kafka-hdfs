@@ -1,6 +1,7 @@
 buildscript {
     repositories {
         jcenter()
+        mavenCentral()
     }
     dependencies {
         classpath "org.springframework.boot:spring-boot-gradle-plugin:1.2.5.RELEASE"
@@ -30,19 +31,10 @@ ext {
     ]
 }
 
-idea {
-    module {
-        downloadSources = true
-    }
-}
-
 repositories {
     mavenLocal()
     jcenter()
     mavenCentral()
-    maven {
-        url "http://nexus.sclab.intel.com:8080/content/groups/public"
-    }
 }
 
 configurations {
@@ -55,6 +47,7 @@ dependencies {
     compile "org.springframework.boot:spring-boot-starter-web"
 
     compile "org.trustedanalytics:hadoop-spring-utils:0.4.6"
+    
     compile "org.apache.kafka:kafka_2.9.2:0.8.2.1"
 
     testCompile "junit:junit:4.11"
