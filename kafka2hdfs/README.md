@@ -18,6 +18,8 @@ You need two service-instances:
 - zookeeper - Zookeper is used to recievie Kafka urls and it stores offset for topics that you read from
 - hdfs - broker will create dedicated folder for you and will provide all needed parameters (NameNode, URI, etc.)
 
+If you use kerberos you should also bind user provided service called *kerberos-service*.
+
 There is sample CF manifest in file **manifest.yml** that assumes that those services are named **zookeeper-inst** and **hdfs-inst**.
 
 You also need to specify topics that you would like to listen on. You do this by setting environment variable TOPICS. You can provide many of them, just separate themy with comma and don't add any spaces.
