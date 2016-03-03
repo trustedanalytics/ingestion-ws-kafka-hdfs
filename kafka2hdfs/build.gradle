@@ -46,7 +46,7 @@ configurations {
 dependencies {
     compile "org.springframework.boot:spring-boot-starter-web"
 
-    compile "org.trustedanalytics:hadoop-spring-utils:0.4.12"
+    compile "org.trustedanalytics:hadoop-spring-utils:0.4.13"
     
     compile "org.apache.kafka:kafka_2.9.2:0.8.2.1"
 
