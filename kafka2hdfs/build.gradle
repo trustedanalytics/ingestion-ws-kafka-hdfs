@@ -35,9 +35,6 @@ repositories {
     mavenLocal()
     jcenter()
     mavenCentral()
-    maven {
-        url "http://repository.cloudera.com/artifactory/cloudera-repos"
-    }
 }
 
 configurations {
@@ -49,7 +46,7 @@ configurations {
 dependencies {
     compile "org.springframework.boot:spring-boot-starter-web"
 
-    compile "org.trustedanalytics:hadoop-spring-utils:0.4.14"
+    compile "org.trustedanalytics:hadoop-spring-utils:0.4.15"
     
     compile "org.apache.kafka:kafka_2.9.2:0.8.2.1"
 
