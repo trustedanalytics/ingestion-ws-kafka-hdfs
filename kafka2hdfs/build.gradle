@@ -35,6 +35,9 @@ repositories {
     mavenLocal()
     jcenter()
     mavenCentral()
+    maven {
+        url "https://repository.cloudera.com/artifactory/cloudera-repos/"
+    }
 }
 
 configurations {
