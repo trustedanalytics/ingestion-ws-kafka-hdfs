@@ -8,7 +8,12 @@ This CF application listens on predefined list of Kafka topics and writes their 
 You can build deplyable jar with:
 
 ```sh
-./gradlew assemble
+./gradlew check assemble
+```
+
+(optional) to update headers use
+```
+./gradlew licenseFormatMain
 ```
 
 ## Deploying
