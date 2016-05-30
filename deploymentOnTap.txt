@@ -1,0 +1,5 @@
+How to deploy ingestion-ws-kafka-hdfs on TAP:
+
+To deploy kafka to hdfs see file ./kafka2hdfs/README.md
+
+To deploy ws to kafka see file ./ws2kafka/README.md
