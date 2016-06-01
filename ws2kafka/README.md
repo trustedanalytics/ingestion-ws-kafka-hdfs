@@ -33,14 +33,13 @@ If you don't provide KAFKA environment variable then all messages will be printe
 
 ## Sending messages
 
-Currently there is a problem in Cloud Foundry with routing WebSocket connections. It will work only with encrypted ones (WSS). This is why using provided ```ws_sender.py``` might work only localy. More advanced is [wscat](https://www.npmjs.com/package/wscat) which seems to work fine. Taken this all into account you just run:
+Just run:
 
 ```sh
-wscat -c wss://name_of_ws2kafka_app.rest_of_domain.com/myFavouriteKafkaTopic
+wscat -c ws://name_of_ws2kafka_app.rest_of_domain.com/myFavouriteKafkaTopic
 ```
 
 and you are able to send messages that will be pushed to Kafka topic *myFavouriteKafkaTopic*.
-
 
 ## TODOs
 

@@ -15,40 +15,50 @@
  */
 package org.trustedanalytics.ingestion.kafka2hdfs.config;
 
-import org.trustedanalytics.ingestion.kafka2hdfs.core.ConsumingTask;
-import org.trustedanalytics.ingestion.kafka2hdfs.hdfs.ToHdfsStreamConsumer;
-import org.trustedanalytics.utils.hdfs.HdfsConfig;
-
-import kafka.consumer.KafkaStream;
-import org.apache.hadoop.fs.FileSystem;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-
-import javax.annotation.Resource;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import javax.annotation.Resource;
+import javax.security.auth.login.LoginException;
+
+import kafka.consumer.KafkaStream;
+
+import org.apache.hadoop.fs.FileSystem;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.trustedanalytics.hadoop.config.client.AppConfiguration;
+import org.trustedanalytics.hadoop.config.client.Configurations;
+import org.trustedanalytics.hadoop.config.client.Property;
+import org.trustedanalytics.hadoop.config.client.ServiceType;
+import org.trustedanalytics.hadoop.config.client.ServiceInstanceConfiguration;
+import org.trustedanalytics.hadoop.config.client.helper.Hdfs;
+import org.trustedanalytics.ingestion.kafka2hdfs.core.ConsumingTask;
+import org.trustedanalytics.ingestion.kafka2hdfs.hdfs.ToHdfsStreamConsumer;
 
 @Configuration
 public class TasksConfiguraiton {
 
     public final static String FOLDER = "from_kafka/";
 
-    @Autowired
-    private HdfsConfig hdfsConfig;
-
     @Resource(name = "kafkaStreams")
     private Map<String, KafkaStream<byte[], byte[]>> kafkaStreams;
 
     @Bean
-    public List<ConsumingTask> tasks() {
-        FileSystem fs = hdfsConfig.getFileSystem();
+    public List<ConsumingTask> tasks() throws IOException, LoginException, InterruptedException,
+        URISyntaxException {
+        AppConfiguration helper = Configurations.newInstanceFromEnv();
+        ServiceInstanceConfiguration hdfsConf = helper.getServiceConfig(ServiceType.HDFS_TYPE);
+        String path = hdfsConf.getProperty(Property.HDFS_URI).get() + FOLDER;
+
+        FileSystem fs = Hdfs.newInstance().createFileSystem();
         return kafkaStreams.entrySet().stream()
                 .map(entry -> new ConsumingTask(
                         entry.getKey(),
                         entry.getValue(),
-                        new ToHdfsStreamConsumer(fs, FOLDER + entry.getKey())
+                        new ToHdfsStreamConsumer(fs, path + entry.getKey())
                 ))
                 .collect(Collectors.toList());
     }

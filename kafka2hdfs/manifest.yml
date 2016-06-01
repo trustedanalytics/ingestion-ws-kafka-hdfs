@@ -4,9 +4,9 @@ applications:
   instances: 1
   path: build/libs/kafka2hdfs.jar
   services:
+      - kerberos-inst
       - zookeeper-inst
       - hdfs-inst
-      - kafka-inst
   env:
       TOPICS: someTopic1,someTopic2
       CONSUMER_GROUP: kafka2hdfs_example

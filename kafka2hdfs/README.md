@@ -18,14 +18,22 @@ You can build deplyable jar with:
 
 ## Deploying
 
-You need two service-instances:
+You need three service-instances.
 
-- zookeeper - Zookeper is used to recievie Kafka urls and it stores offset for topics that you read from
-- hdfs - broker will create dedicated folder for you and will provide all needed parameters (NameNode, URI, etc.)
+- zookeeper (plan shared) - Zookeper is used to recievie Kafka urls and it stores offset for topics that you read from 
+- hdfs (plan shared) - broker will create dedicated folder for you and will provide all needed parameters (NameNode, URI, etc.)
+- kerberos (plan shared) - this instance provides credentials for kerberos and technical user. Please note that also in environments without kerberos, this service is required. 
 
-If you use kerberos you should also bind user provided service called *kerberos-service*.
+Above service instances could be created like below:
+```
+cf cs <type> <plan> <instance-name>
+```
+example:
+```
+cf cs kerberos shared kerberos-instance
+```
 
-There is sample CF manifest in file **manifest.yml** that assumes that those services are named **zookeeper-inst** and **hdfs-inst**.
+There is sample CF manifest in file **manifest.yml** that assumes that those services are named **zookeeper-inst**, **kerberos-inst** and **hdfs-inst**.
 
 You also need to specify topics that you would like to listen on. You do this by setting environment variable TOPICS. You can provide many of them, just separate themy with comma and don't add any spaces.
 

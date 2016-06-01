@@ -40,7 +40,7 @@ public class ToHdfsStreamConsumer implements StreamConsumer {
 
     public ToHdfsStreamConsumer(FileSystem fs, String filePath) {
         this.fs = fs;
-        this.filePath = new Path(fs.getWorkingDirectory(), filePath);
+        this.filePath = new Path(filePath);
         out = null;
     }
 
