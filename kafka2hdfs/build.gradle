@@ -56,9 +56,9 @@ dependencies {
 
     compile "org.trustedanalytics:hadoop-utils:0.6.5"
 
-    compile "org.apache.kafka:kafka_2.9.2:0.8.2.1"
+    compile "org.apache.kafka:kafka_2.9.2:0.8.2.2"
 
-    testCompile "junit:junit:4.11"
+    testCompile "junit:junit:4.12"
 }
 
 task wrapper(type: Wrapper) {
