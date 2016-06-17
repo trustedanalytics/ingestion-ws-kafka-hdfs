@@ -17,7 +17,7 @@ You can build deplyable jar with:
 ```
 
 ## Deploying
-
+### Manual deployment
 You need three service-instances.
 
 - zookeeper (plan shared) - Zookeper is used to recievie Kafka urls and it stores offset for topics that you read from 
@@ -45,6 +45,12 @@ We suggest that you just modify **manifest.yml** to suit your needs and run:
 cf push
 ```
 
+### Automated deployment
+* Switch to `deploy` directory: `cd deploy`
+* Install tox: `sudo -E pip install --upgrade tox`
+* Run: `tox`
+* Activate virtualenv with installed dependencies: `. .tox/py27/bin/activate`
+* Run deployment script: `python deploy.py` providing required parameters when running script (`python deploy.py -h` to check script parameters with their descriptions).
 
 ## Running it locally
 

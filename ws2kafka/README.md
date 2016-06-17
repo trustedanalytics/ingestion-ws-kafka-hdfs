@@ -6,6 +6,7 @@ If you need more advanced system then probably go for [Gateway](https://github.c
 
 ## Deployment
 
+### Manual deployment
 There is already maninfest that you could use. Just review it and run:
 
 ```sh
@@ -13,6 +14,12 @@ cf push
 ```
 It will deploy all Python files which is not needed in this case.
 
+### Automated deployment
+* Switch to `deploy` directory: `cd deploy`
+* Install tox: `sudo -E pip install --upgrade tox`
+* Run: `tox`
+* Activate virtualenv with installed dependencies: `. .tox/py27/bin/activate`
+* Run deployment script: `python deploy.py` providing required parameters when running script (`python deploy.py -h` to check script parameters with their descriptions).
 
 ## Running it localy
 
