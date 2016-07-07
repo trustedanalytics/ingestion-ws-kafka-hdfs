@@ -35,7 +35,7 @@ cf cs kerberos shared kerberos-instance
 
 There is sample CF manifest in file **manifest.yml** that assumes that those services are named **zookeeper-inst**, **kerberos-inst** and **hdfs-inst**.
 
-You also need to specify topics that you would like to listen on. You do this by setting environment variable TOPICS. You can provide many of them, just separate themy with comma and don't add any spaces.
+You also need to specify topics that you would like to listen on. You do this by setting environment variable TOPICS. You can provide many of them, just separate them with comma and don't add any spaces.
 
 Also you should set variable **CONSUMER_GROUP** into some unique Kafka consumer group. If someone else uses the same value only one of you will recieve messages.
 
