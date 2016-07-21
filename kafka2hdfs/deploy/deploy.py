@@ -26,7 +26,7 @@ APP_NAME = "kafka2hdfs"
 
 PARSER = cf_helpers.get_parser(APP_NAME)
 PARSER.add_argument('-t','--topics', type=str, required=True, help='Topics to listen on (separated with comas, without spaces)')
-PARSER.add_argument('-cg','--consumer_group', type=str, default="", help='Unique Kafka consumer group')
+PARSER.add_argument('-cg','--consumer_group', type=str, required=True, help='Unique Kafka consumer group')
 
 ARGS = PARSER.parse_args()
 
