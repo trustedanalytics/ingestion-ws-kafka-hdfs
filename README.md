@@ -1,6 +1,6 @@
 # A sample application for ingesting data through TAP and Kafka
 
-This repository contains a sample application on how to setup ingestion pipeline on Trusted Analytics platform, as the following shows:
+This repository contains a sample application to show how TAP services can be connected. The following figure shows the flow for a data ingestion example using Apache Kafka.
 
 ![](docs/ingestion_ws2kafka2hdfs.png)
 
